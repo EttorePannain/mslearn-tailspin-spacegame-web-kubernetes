@@ -13,6 +13,7 @@ COPY . .
 WORKDIR "/src/Tailspin.SpaceGame.LeaderboardContainer"
 RUN dotnet build --no-restore "Tailspin.SpaceGame.LeaderboardContainer.csproj" -c $BUILD_CONFIGURATION
 
-RUN echo "exec dotnet run --no-build --no-launch-profile -c $BUILD_CONFIGURATION --" > /entrypoint.sh
+RUN echo "exec dotnet run --no-build --environment Production --no-launch-profile -c $BUILD_CONFIGURATION --" > /entrypoint.sh
+
 
 ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
