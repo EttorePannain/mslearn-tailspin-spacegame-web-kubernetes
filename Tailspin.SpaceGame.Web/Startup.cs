@@ -42,10 +42,12 @@ namespace TailSpin.SpaceGame.Web
         {
             if (env.IsDevelopment())
             {
+                app.UseStatusCodePages();
                 app.UseDeveloperExceptionPage();
             }
             else
             {
+               app.UseStatusCodePages();
                app.UseExceptionHandler("/Home/Error");
                app.UseHsts();
             }
