@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0
-ARG BUILD_CONFIGURATION=Release
-ENV ASPNETCORE_ENVIRONMENT=Production
+ARG BUILD_CONFIGURATION=Debug
+ENV ASPNETCORE_ENVIRONMENT=Development
 ENV ASPNETCORE_URLS=http://+:80
 ENV DOTNET_USE_POLLING_FILE_WATCHER=true
 EXPOSE 80
@@ -13,7 +13,7 @@ COPY . .
 WORKDIR "/src/Tailspin.SpaceGame.LeaderboardContainer"
 RUN dotnet build --no-restore "Tailspin.SpaceGame.LeaderboardContainer.csproj" -c $BUILD_CONFIGURATION
 
-RUN echo "exec dotnet run --no-build --environment Production --no-launch-profile -c $BUILD_CONFIGURATION --" > /entrypoint.sh
+RUN echo "exec dotnet run --no-build --environment $ASPNETCORE_ENVIRONMENT --no-launch-profile -c $BUILD_CONFIGURATION --" > /entrypoint.sh
 
 
 ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
